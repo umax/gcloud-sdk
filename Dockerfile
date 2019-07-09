@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 RUN pip install --no-cache-dir crcmod
 
-ARG CLOUD_SDK_VERSION=252.0.0
+ARG CLOUD_SDK_VERSION=253.0.0
 RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk-stretch main" > /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
     apt-get update && apt-get install --no-install-recommends -y \
