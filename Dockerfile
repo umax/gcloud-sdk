@@ -9,7 +9,12 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     gnupg \
     make
 
-RUN pip install --no-cache-dir crcmod
+RUN pip install --no-cache-dir \
+    crcmod \
+    grpcio==1.8.2 \
+    mock \
+    pytest \
+    pytest-cov
 
 ARG CLOUD_SDK_VERSION=253.0.0
 RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk-stretch main" > /etc/apt/sources.list.d/google-cloud-sdk.list && \
