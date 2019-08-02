@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     apt-transport-https \
     curl \
     gnupg \
-    make
+    make \
+    openjdk-8-jdk
 
 RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk-stretch main" > /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
