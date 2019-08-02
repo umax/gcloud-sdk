@@ -1,15 +1,16 @@
-FROM debian:stretch
+FROM debian:stretch-slim
 
 ENV GCLOUD_SDK_PATH=/usr/lib/google-cloud-sdk/
 
 # sys packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN mkdir -p /usr/share/man/man1/ && \
+    apt-get update && apt-get install -y --no-install-recommends \
     apt-transport-https \
     ca-certificates \
     curl \
     gcc \
     gnupg \
-    python-dev \
+    make \
     python2.7
 
 # pip + test packages
