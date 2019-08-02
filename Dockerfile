@@ -1,18 +1,26 @@
-FROM python:2.7-slim
+FROM debian:stretch
 
-CMD ["/bin/bash"]
 ENV GCLOUD_SDK_PATH=/usr/lib/google-cloud-sdk/
 
-RUN pip install mock pytest pytest-cov
-
-RUN mkdir -p /usr/share/man/man1/
-RUN apt-get update && apt-get install --no-install-recommends -y \
+# sys packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-transport-https \
+    ca-certificates \
     curl \
+    gcc \
     gnupg \
-    make \
-    openjdk-8-jdk
+    python-dev \
+    python2.7
 
+# pip + test packages
+RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+    python2.7 get-pip.py
+RUN pip install --no-cache-dir \
+    mock \
+    pytest \
+    pytest-cov
+
+# Google Cloud SDK
 RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk-stretch main" > /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
     apt-get update && apt-get install --no-install-recommends -y \
