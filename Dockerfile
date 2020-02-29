@@ -22,6 +22,7 @@ RUN pip install --no-cache-dir \
     pytest-cov
 
 # Google Cloud SDK
+ENV GCSDSKVER=282
 RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk-stretch main" > /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
     apt-get update && apt-get install --no-install-recommends -y \
